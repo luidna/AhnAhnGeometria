@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         int D33 = Integer.parseInt(fieldD33.getText().toString());
 
         int resultado, ladoa, ladob;
-        ladoa = (D11*D22*D33)+(D12*D23*D31)+(D13*D21*D33);
+        ladoa = (D11*D22*D33)+(D12*D23*D31)+(D13*D21*D32);
         ladob = (D12*D21*D33)+(D11*D23*D32)+(D13*D22*D31);
 
         resultado = ladoa - ladob;

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:layout_marginTop="-200dp"
+    tools:layout_marginTop="-500dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -21,7 +21,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/label1"
@@ -30,6 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:text="2 Pontos"
+                android:textSize="24sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +94,7 @@
 
             <Button
                 android:id="@+id/button_ddp"
-                android:layout_width="121dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -107,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
+                android:textSize="24sp"
                 android:text="Distância Ponto e Reta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +156,7 @@
 
             <Button
                 android:id="@+id/pontoRetaCalc"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -174,9 +177,9 @@
                 android:textSize="24sp" />
 
             <LinearLayout
-                android:layout_width="300dp"
+                android:id="@+id/DetLayout"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="85dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -191,10 +194,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:digits="0123456789-"
                         android:ems="10"
                         android:gravity="center"
                         android:inputType="number"
-                        android:digits="0123456789-"
                         android:text="1" />
 
                     <EditText
@@ -202,9 +205,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:digits="0123456789-"
                         android:ems="10"
                         android:gravity="center"
-                        android:digits="0123456789-"
                         android:inputType="number"
                         android:text="1" />
 
@@ -213,9 +216,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:digits="0123456789-"
                         android:ems="10"
                         android:gravity="center"
-                        android:digits="0123456789-"
                         android:inputType="number"
                         android:text="1" />
                 </LinearLayout>
@@ -241,23 +244,23 @@
                         android:id="@+id/det22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:digits="0123456789-"
-                        android:gravity="center"
                         android:layout_weight="1"
+                        android:digits="0123456789-"
                         android:ems="10"
-                        android:text="1"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
 
                     <EditText
                         android:id="@+id/det23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:digits="0123456789-"
                         android:layout_weight="1"
-                        android:text="1"
-                        android:gravity="center"
+                        android:digits="0123456789-"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -271,33 +274,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="1"
-                        android:gravity="center"
-                        android:ems="10"
                         android:digits="0123456789-"
-                        android:inputType="number" />
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
 
                     <EditText
                         android:id="@+id/det32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:digits="0123456789-"
-                        android:gravity="center"
-                        android:text="1"
                         android:layout_weight="1"
+                        android:digits="0123456789-"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
 
                     <EditText
                         android:id="@+id/det33"
                         android:layout_width="wrap_content"
-                        android:digits="0123456789-"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="1"
+                        android:digits="0123456789-"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
 
                 </LinearLayout>
 
@@ -318,6 +321,74 @@
                     android:text="Calcular" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/Label2retas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="Intersecção de Retas"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="831dp" />
+
+            <LinearLayout
+                android:id="@+id/layout2retas"
+                android:layout_width="325dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/interReta1"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="right"
+                    android:hint="ax+b"
+                    android:inputType="textPersonName"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="="
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                <EditText
+                    android:id="@+id/interReta2"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="ax+b"
+                    android:inputType="textPersonName"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/resultInterRetas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Resultado"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/calc_inter_retas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Calcular" />
 
         </LinearLayout>
     </ScrollView>

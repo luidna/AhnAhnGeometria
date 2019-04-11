@@ -19,7 +19,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button_ddp, button_preta_calc, button_det_calc;
+    Button button1, button_ddp, button_preta_calc, button_det_calc, button_calc_retas;
+
+    Pattern Ppx = Pattern.compile("-?\\d*(?=[xX])");
+    Pattern Ppy = Pattern.compile("-?\\d*(?=[yY])");
 
 
     @Override
@@ -114,15 +117,11 @@ public class MainActivity extends AppCompatActivity {
         int py1 = Integer.parseInt(pontoV[1]);
 
 
-        Pattern px = Pattern.compile("-?\\d*(?=x)");
-        Pattern py = Pattern.compile("-?\\d*(?=y)");
         Pattern pc = Pattern.compile("-?\\d*(?=[=])");
-        Matcher mx = px.matcher(EQreta);
-        Matcher my = py.matcher(EQreta);
+        Matcher mx = Ppx.matcher(EQreta);
+        Matcher my = Ppy.matcher(EQreta);
         Matcher mc = pc.matcher(EQreta);
-        String strRx;
-        String strRy;
-        String strRc;
+        String strRx, strRy, strRc;
         if (mx.find()){
             strRx = mx.group(0).toString();
             if (strRx.equals("-")){
@@ -183,10 +182,107 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void intersectRetasUI()
+    {
+
+        TextView LabelResultadoRetas =  (TextView)findViewById(R.id.resultInterRetas);
+        EditText fieldRetaA = (EditText)findViewById(R.id.interReta1);
+        EditText fieldRetaB = (EditText)findViewById(R.id.interReta2);
+        String strRetaA = fieldRetaA.getText().toString();
+        String strRetaB = fieldRetaB.getText().toString();
+
+        Pattern Pc = Pattern.compile("-?\\d+(?!x)(?!y)");
+
+        Matcher mx = Ppx.matcher(strRetaA);
+        Matcher mc = Pc.matcher(strRetaA);
+
+        String Ax, Ac, Bx, Bc;
+        if (mx.find()) {
+            Ax = mx.group(0).toString();
+            if (Ax.equals("-")){
+                Ax = "-1";
+            } else if (Ax.equals("")){
+                Ax = "1";
+            }
+
+        } else {
+            Ax = "0";
+        }
+
+        if (mc.find()){
+            Ac = mc.group(0).toString();
+        } else {
+            Ac = "";
+        }
+
+        mx = Ppx.matcher(strRetaB);
+        mc = Pc.matcher(strRetaB);
+
+        if (mx.find()) {
+            Bx = mx.group(0).toString();
+            if (Bx.equals("-")){
+                Bx = "-1";
+            } else if (Bx.equals("")){
+                Bx = "1";
+            }
+        } else {
+            Bx = "0";
+        }
+
+        if (mc.find()){
+            Bc = mc.group(0).toString();
+        } else {
+            Bc = "0";
+        }
+
+        int x1 = Integer.parseInt(Ax);
+        int c1 = Integer.parseInt(Ac);
+        int x2 = Integer.parseInt(Bx);
+        int c2 = Integer.parseInt(Bc);
+
+        String resultado = intersectRetas(x1, c1, x2, c2);
+        LabelResultadoRetas.setText(resultado);
 
 
+    }
 
-    public static String retaFrom2P(int x1, int y1, int x2, int y2){
+    public static String intersectRetas(int x1,int c1, int x2, int c2)
+    {
+        //acha a interseccao por igualar o y
+        int resulx = x1 - x2;
+        int resulc = c2 - c1;
+        int mdcresultado = MDC(resulx, resulc);
+        boolean xnegativo = (resulx < 0);
+        if (xnegativo){
+            resulx = resulx * (-1);
+            resulc = resulc * (-1);
+        }
+
+        //fazendo em doubles pra poder fazer a divisao depois
+        double resulfx, resulfc;
+
+        if (mdcresultado == resulx){
+            resulfx = resulx/mdcresultado;
+            resulfc = resulc/mdcresultado;
+        } else {
+            resulfc = (double)resulc / (double)resulx;
+            resulfx = 1;
+        }
+        double xintersect = resulfc;
+        double yintersect = (double)x1 * xintersect + (double)c1;
+
+        DecimalFormat formatador = new DecimalFormat("#.0000");
+
+        if (ehInteiro(xintersect) && ehInteiro(yintersect)){
+            return "(" + String.valueOf((int)xintersect) + ", " + String.valueOf((int)yintersect) + ")";
+        } else {
+            return "(" + String.valueOf(formatador.format(xintersect)) + ", " + String.valueOf(formatador.format(yintersect)) + ")";
+        }
+
+    }
+
+    public static String retaFrom2P(int x1, int y1, int x2, int y2)
+    {
 
         double m = mAngular(x1,y1,x2,y2);
         String mF = mFracionario(x1,y1,x2,y2);
@@ -211,8 +307,10 @@ public class MainActivity extends AppCompatActivity {
 
             strC = String.valueOf((int)c);
         } else {
-            strC = String.valueOf(c);
+            DecimalFormat formatador = new DecimalFormat("#.0000");
+            strC = String.valueOf(formatador.format(c));
         }
+
         if (c < 0){
             return "y=" + strM + "x" + strC;
         } else if (c > 0) {
@@ -263,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
         return mdc.intValue();
 
     }
+
     public static String dist2P(int x1, int y1, int x2, int y2)
     {
         int termoA = x1 - x2;
@@ -279,12 +378,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static Boolean ehInteiro(double val){
+    public static Boolean ehInteiro(double val)
+    {
         //confere se eh inteiro ao ver a string
         String valOriginal = (String.valueOf(val));
         String valInt = String.valueOf((int)val) + ".0";
         return valOriginal.equals(valInt);
     }
+
     public static int moduloInt(int m)
     {
         if (m >= 0 ){
@@ -317,6 +418,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 detcalc();
+            }
+        });
+        button_calc_retas = (Button)findViewById(R.id.calc_inter_retas);
+        button_calc_retas.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intersectRetasUI();
             }
         });
 

@@ -2,20 +2,24 @@ package com.example.ahnahn_geometria;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import org.w3c.dom.Text;
 
 import java.lang.Math;
 import java.text.DecimalFormat;
 import java.math.BigInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button_ddp;
+    Button button1, button_ddp, button_preta_calc;
 
 
     @Override
@@ -53,6 +57,92 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void pontoReta()
+    {
+        //inicializando os pontos da UI
+        EditText fieldPontoReta = (EditText)findViewById(R.id.pontoVreta);
+        EditText fieldEQReta = (EditText)findViewById(R.id.eqRetaPR);
+        String EQreta = fieldEQReta.getText().toString();
+        String pontoVreta = fieldPontoReta.getText().toString();
+        TextView labelResultado = (TextView)findViewById(R.id.ResultadoPReta);
+
+        String[] pontoV = pontoVreta.split(",");
+        int px1 = Integer.parseInt(pontoV[0]);
+        int py1 = Integer.parseInt(pontoV[1]);
+
+
+        Pattern px = Pattern.compile("-?\\d*(?=x)");
+        Pattern py = Pattern.compile("-?\\d*(?=y)");
+        Pattern pc = Pattern.compile("-?\\d*(?=[=])");
+        Matcher mx = px.matcher(EQreta);
+        Matcher my = py.matcher(EQreta);
+        Matcher mc = pc.matcher(EQreta);
+        String strRx;
+        String strRy;
+        String strRc;
+        if (mx.find()){
+            strRx = mx.group(0).toString();
+            if (strRx.equals("-")){
+                strRx = "-1";
+            } else if (strRx.equals("")){
+                strRx = "1";
+            }
+        }
+         else {
+            strRx = "0";
+        }
+
+
+        if (my.find()){
+            strRy = my.group(0).toString();
+            if (strRy.equals("-")){
+                strRy = "-1";
+            } else if (strRy.equals("")){
+                strRy = "1";
+            }
+        } else {
+            strRy = "0";
+        }
+
+
+        if (mc.find()){
+            strRc = mc.group(0).toString();
+        } else {
+            strRc = "0";
+        }
+
+        int rx = Integer.parseInt(strRx);
+        int ry = Integer.parseInt(strRy);
+        int rc = Integer.parseInt(strRc);
+
+        String resultado = distPReta(px1, py1, rx, ry, rc);
+        labelResultado.setText(resultado);
+
+
+        //int retaX = ;
+    }
+
+    public static String distPReta(int px1, int py1, int rx, int ry, int rc)
+    {
+        int numerador = (rx * px1) + (ry * py1) + rc;
+        numerador = moduloInt(numerador);
+        int denominadorQuadrado = (rx * rx) + (ry * ry);
+        double denominador = Math.sqrt(denominadorQuadrado);
+        String Resultado;
+
+
+        if (ehInteiro(denominador)){
+            Resultado = String.valueOf(numerador/denominador);
+        } else {
+            Resultado = String.valueOf(numerador) + "/√" + String.valueOf(denominadorQuadrado);
+        }
+        return Resultado;
+
+    }
+
+
+
 
     public static String retaFrom2P(int x1, int y1, int x2, int y2){
 
@@ -142,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
             return String.valueOf((int)resultado);
         } else {
             DecimalFormat formatador = new DecimalFormat("#.0000");
-            return "√"+ String.valueOf(soma) + " ou "+ String.valueOf(formatador.format(resultado));
+            return "D = √"+ String.valueOf(soma) + " ou "+ String.valueOf(formatador.format(resultado));
         }
 
     }
@@ -152,6 +242,14 @@ public class MainActivity extends AppCompatActivity {
         String valOriginal = (String.valueOf(val));
         String valInt = String.valueOf((int)val) + ".0";
         return valOriginal.equals(valInt);
+    }
+    public static int moduloInt(int m)
+    {
+        if (m >= 0 ){
+            return m;
+        } else {
+            return (m *(-1));
+        }
     }
 
 
@@ -165,6 +263,15 @@ public class MainActivity extends AppCompatActivity {
                 process2P();
             }
         });
+        button_preta_calc = (Button)findViewById(R.id.pontoRetaCalc);
+        button_preta_calc.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pontoReta();
+            }
+        });
+
+
     }
 }
 

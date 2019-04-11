@@ -162,6 +162,144 @@
                 app:layout_constraintStart_toStartOf="@+id/LabelPontoReta"
                 app:layout_constraintTop_toBottomOf="@+id/LabelPontoReta" />
 
+            <TextView
+                android:id="@+id/labelDeterminante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Determinante"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/det11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:digits="0123456789-"
+                        android:text="1" />
+
+                    <EditText
+                        android:id="@+id/det12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:digits="0123456789-"
+                        android:inputType="number"
+                        android:text="1" />
+
+                    <EditText
+                        android:id="@+id/det13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:digits="0123456789-"
+                        android:inputType="number"
+                        android:text="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/det21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:digits="0123456789-"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1" />
+
+                    <EditText
+                        android:id="@+id/det22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789-"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:text="1"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/det23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789-"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:gravity="center"
+                        android:ems="10"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/det31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:gravity="center"
+                        android:ems="10"
+                        android:digits="0123456789-"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/det32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789-"
+                        android:gravity="center"
+                        android:text="1"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/det33"
+                        android:layout_width="wrap_content"
+                        android:digits="0123456789-"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:ems="10"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

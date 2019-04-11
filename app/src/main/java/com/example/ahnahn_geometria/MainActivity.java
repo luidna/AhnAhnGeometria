@@ -1,5 +1,6 @@
 package com.example.ahnahn_geometria;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,10 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-
-import org.w3c.dom.Text;
-
 import java.lang.Math;
 import java.text.DecimalFormat;
 import java.math.BigInteger;
@@ -45,6 +42,21 @@ public class MainActivity extends AppCompatActivity {
         EditText fieldD31 = (EditText)findViewById(R.id.det31);
         EditText fieldD32 = (EditText)findViewById(R.id.det32);
         EditText fieldD33 = (EditText)findViewById(R.id.det33);
+
+        EditText[] arrayteste = {fieldD11, fieldD12, fieldD13, fieldD21, fieldD22, fieldD23, fieldD31, fieldD32, fieldD33};
+
+        for (EditText loopedEditText: arrayteste){
+            String a = loopedEditText.getText().toString();
+            if (a.equals("")){
+
+
+            AlertDialog.Builder builderDialog = new AlertDialog.Builder(this);
+            builderDialog.setMessage("Sua determinante tem valores nulos, conserte!");
+            builderDialog.setTitle("Seu burro");
+            AlertDialog dialog = builderDialog.create();
+            dialog.show();
+            return;}
+        }
 
         int D11 = Integer.parseInt(fieldD11.getText().toString());
         int D12 = Integer.parseInt(fieldD12.getText().toString());

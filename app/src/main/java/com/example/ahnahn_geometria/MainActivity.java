@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    Button button1, button_ddp, button_preta_calc;
+    Button button1, button_ddp, button_preta_calc, button_det_calc;
 
 
     @Override
@@ -30,6 +30,48 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void detcalc(){
+        TextView labelResultado = (TextView)findViewById(R.id.resultadoDet);
+        EditText fieldD11 = (EditText)findViewById(R.id.det11);
+        EditText fieldD12 = (EditText)findViewById(R.id.det12);
+        EditText fieldD13 = (EditText)findViewById(R.id.det13);
+        EditText fieldD21 = (EditText)findViewById(R.id.det21);
+        EditText fieldD22 = (EditText)findViewById(R.id.det22);
+        EditText fieldD23 = (EditText)findViewById(R.id.det23);
+        EditText fieldD31 = (EditText)findViewById(R.id.det31);
+        EditText fieldD32 = (EditText)findViewById(R.id.det32);
+        EditText fieldD33 = (EditText)findViewById(R.id.det33);
+
+        int D11 = Integer.parseInt(fieldD11.getText().toString());
+        int D12 = Integer.parseInt(fieldD12.getText().toString());
+        int D13 = Integer.parseInt(fieldD13.getText().toString());
+        int D21 = Integer.parseInt(fieldD21.getText().toString());
+        int D22 = Integer.parseInt(fieldD22.getText().toString());
+        int D23 = Integer.parseInt(fieldD23.getText().toString());
+        int D31 = Integer.parseInt(fieldD31.getText().toString());
+        int D32 = Integer.parseInt(fieldD32.getText().toString());
+        int D33 = Integer.parseInt(fieldD33.getText().toString());
+
+        int resultado, ladoa, ladob;
+        ladoa = (D11*D22*D33)+(D12*D23*D31)+(D13*D21*D33);
+        ladob = (D12*D21*D33)+(D11*D23*D32)+(D13*D22*D31);
+
+        resultado = ladoa - ladob;
+
+
+        labelResultado.setText(String.valueOf(resultado));
+
+
+
+
+
+
+
+
+
+
+    }
 
     public void process2P(){
         //pega os textos dos edit text
@@ -268,6 +310,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pontoReta();
+            }
+        });
+        button_det_calc = (Button)findViewById(R.id.calculo_det);
+        button_det_calc.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                detcalc();
             }
         });
 

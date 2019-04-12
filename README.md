@@ -4,3 +4,5 @@ App feito para a aula de geometria analítica. Faz calculos de distância e equa
 cálculo de determinante e intersecção de retas.
 
 Ainda falta validar todos os inputs.
+
+Meu primeiro app android.
